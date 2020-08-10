@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  db:
+    container_name: db
+    restart: always
+    image: postgres
+    env_file:
+      - db.env
+    # environment:
+    #   - POSTGRES_PASSWORD:'12345'
+    #   - POSTGRES_USER:'hnariman'
+    ports:
+      - 5555:5432
+    volumes:
+      - data:/var/lib/postgresql/data/
+        
+  adminer:
+    container_name: adminer
+    restart: always
+    image: adminer
+    ports:
+      - 5050:80
+volumes:
+  data:
+    driver: local
